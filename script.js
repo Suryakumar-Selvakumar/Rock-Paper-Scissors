@@ -25,19 +25,40 @@ function getHumanChoice() {
   }
 }
 
-/* Does your program have a user interface? What will it look like? What functionality will the interface have? Sketch this out on paper. 
-No for all
+function playGame() {
+  function playRound(humanChoice, computerChoice) {
+    if (humanChoice == "rock" && computerChoice == "scissors") {
+      console.log("You Win! Rock beats Scissors");
+      humanScore += 1;
+    } else if (humanChoice == "rock" && computerChoice == "paper") {
+      console.log("You Lose! Paper beats Rock");
+      computerScore += 1;
+    } else if (humanChoice == "paper" && computerChoice == "rock") {
+      console.log("You Win! Paper beats Rock");
+      humanScore += 1;
+    } else if (humanChoice == "paper" && computerChoice == "scissors") {
+      console.log("You Lose! Scissors beats Paper");
+      computerScore += 1;
+    } else if (humanChoice == "scissors" && computerChoice == "paper") {
+      console.log("You Win! Scissors beats Paper");
+      humanScore += 1;
+    } else if (humanChoice == "scissors" && computerChoice == "rock") {
+      console.log("You Lose! Rock beats Scissors");
+      computerScore += 1;
+    } else {
+      console.log("It's a Tie!");
+    }
+  }
 
-What inputs will your program have? 
-2 variables passed as arguments to this function playRound().
+  for (let i = 0; i < 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  }
 
-Will the user enter data or will you get input from somewhere else?
-The input will be retrieved from previous functions by assigning the function call to the variables
-
-What’s the desired output?
-Successfully have the computer and the human play one round of Rock, Paper, Scissors and increment the score of each based on who wins the round.
-
-Given your inputs, what are the steps necessary to return the desired output?
-1. First, compare the 2 inputs in the following manner: Rock beats Scissors, Scissors beats Paper, Paper beats Rock. Same input ties with itself
-2. Between the computer and human, depending on who wins the round, display the winner
-3. Increment the winner’s score*/
+  if (humanScore > computerScore) {
+    return `You Won ${humanScore} Rounds, You Win!`;
+  } else {
+    return `You Lost! The Computer Won ${computerScore} Rounds, Computer Wins!`;
+  }
+}
