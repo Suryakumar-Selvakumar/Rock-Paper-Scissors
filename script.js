@@ -21,7 +21,7 @@ function getHumanChoice() {
   ) {
     return choice.toLowerCase();
   } else {
-    return "Invalid choice, pick Rock, Paper or Scissors!";
+    return "an Invalid choice, pick Rock, Paper or Scissors!";
   }
 }
 
@@ -45,20 +45,39 @@ function playGame() {
     } else if (humanChoice == "scissors" && computerChoice == "rock") {
       console.log("You Lose! Rock beats Scissors");
       computerScore += 1;
-    } else {
+    } else if (
+      (humanChoice == "rock" && computerChoice == "rock") ||
+      (humanChoice == "paper" && computerChoice == "paper") ||
+      (humanChoice == "scissors" && computerChoice == "scissors")
+    ) {
       console.log("It's a Tie!");
+    } else {
+      console.log("You Made an Invalid Choice, This Round Goes to No one!");
     }
   }
 
   for (let i = 0; i < 5; i++) {
     const humanSelection = getHumanChoice();
+    console.log(`You Chose ${humanSelection}`);
     const computerSelection = getComputerChoice();
+    console.log(`Computer Chose ${computerSelection}`);
     playRound(humanSelection, computerSelection);
   }
 
+  console.log(`Your Score: ${humanScore}`);
+  console.log(`Computer Score: ${computerScore}`);
+
   if (humanScore > computerScore) {
-    return `You Won ${humanScore} Rounds, You Win!`;
+    console.log(`You Won ${humanScore} Round(s), You Win!`);
+  } else if (computerScore > humanScore) {
+    console.log(
+      `You Lost! The Computer Won ${computerScore} Round(s), Computer Wins!`
+    );
   } else {
-    return `You Lost! The Computer Won ${computerScore} Rounds, Computer Wins!`;
+    console.log(
+      `It's a Tie! You Won ${humanScore} Round(s) and The Computer Won ${computerScore} Round(s)`
+    );
   }
 }
+
+playGame();
