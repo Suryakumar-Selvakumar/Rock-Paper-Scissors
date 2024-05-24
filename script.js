@@ -12,8 +12,7 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  let choice = prompt("Enter Rock, Paper or Scissors");
+function getHumanChoice(choice) {
   if (
     choice.toLowerCase() == "rock" ||
     choice.toLowerCase() == "paper" ||
@@ -56,13 +55,32 @@ function playGame() {
     }
   }
 
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    console.log(`You Chose ${humanSelection}`);
-    const computerSelection = getComputerChoice();
-    console.log(`Computer Chose ${computerSelection}`);
+  const humanSelection = "";
+  const computerSelection = getComputerChoice();
+
+  const btnRock = document.createElement("button");
+  btnRock.textContent = "Rock";
+  const btnPaper = document.createElement("button");
+  btnPaper.textContent = "Paper";
+  const btnScissors = document.createElement("button");
+  btnScissors.textContent = "Scissors";
+  const play = document.createElement("button");
+  play.textContent = "Play";
+
+  btnRock.addEventListener("click", () => {
+    humanSelection = getHumanChoice("rock");
+  });
+  btnPaper.addEventListener("click", () => {
+    humanSelection = getHumanChoice("paper");
+  });
+  btnScissors.addEventListener("click", () => {
+    const humanSelection = getHumanChoice("scissors");
+  });
+  play.addEventListener("click", () => {
     playRound(humanSelection, computerSelection);
-  }
+    console.log(`You Chose ${humanSelection}`);
+    console.log(`Computer Chose ${computerSelection}`);
+  });
 
   console.log(`Your Score: ${humanScore}`);
   console.log(`Computer Score: ${computerScore}`);
