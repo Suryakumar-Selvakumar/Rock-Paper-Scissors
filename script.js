@@ -144,6 +144,7 @@ function playGame() {
   playAgain.addEventListener("click", () => {
     humanScore = 0;
     computerScore = 0;
+    humanSelection = "";
     paraHumanChoice.textContent = "";
     paraComputerChoice.textContent = "";
     scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
