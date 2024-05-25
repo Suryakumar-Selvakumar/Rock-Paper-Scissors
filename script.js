@@ -25,9 +25,34 @@ function getHumanChoice(choice) {
 }
 
 function playGame() {
-  const paraResult = document.getElementById("para-result");
-  const paraHumanScore = document.getElementById("para-human-score");
-  const paraComputerScore = document.getElementById("para-computer-score");
+  //Declaring variable for html elements
+  const paraResult = document.querySelector("#para-result");
+  const paraHumanScore = document.querySelector("#para-human-score");
+  const paraComputerScore = document.querySelector("#para-computer-score");
+  const btnRock = document.querySelector("#btn-rock");
+  const btnPaper = document.querySelector("#btn-paper");
+  const btnScissors = document.querySelector("#btn-scissors");
+  const play = document.querySelector("#play");
+  const paraHumanChoice = document.querySelector("#para-human-choice");
+  const paraComputerChoice = document.querySelector("#para-computer-choice");
+  //const body = document.querySelector("body");
+  const paraGameResult = document.querySelector("#para-game-result");
+  const playAgain = document.querySelector("#play-again");
+
+  // Check if all elements are found
+  console.log({
+    paraResult,
+    paraHumanScore,
+    paraComputerScore,
+    btnRock,
+    btnPaper,
+    btnScissors,
+    play,
+    paraHumanChoice,
+    paraComputerChoice,
+    playAgain,
+    paraGameResult,
+  });
 
   function playRound(humanChoice, computerChoice) {
     if (humanChoice == "rock" && computerChoice == "scissors") {
@@ -59,37 +84,24 @@ function playGame() {
     paraComputerScore.innerText = `Computer Score: ${computerScore}`;
   }
 
-  let humanSelection;
+  //Styling elements
 
-  const btnRock = document.querySelector("btn-rock");
   btnRock.style.margin = "5px";
-
-  const btnPaper = document.querySelector("btn-paper");
   btnPaper.style.margin = "5px";
-
-  const btnScissors = document.querySelector("btn-scissors");
   btnScissors.style.margin = "5px";
-
-  const play = document.querySelector("play");
   play.style.display = "block";
   play.style.marginLeft = "50px";
   play.style.marginTop = "10px";
   play.style.padding = "3px 22px";
-
-  const body = document.querySelector("body");
-
-  const paraHumanChoice = document.querySelector("para-human-choice");
-
-  const paraComputerChoice = document.querySelector("para-computer-choice");
-
-  const paraGameResult = document.querySelector("para-game-result");
   paraGameResult.style.display = "none";
-
-  const playAgain = document.querySelector("play-again");
   playAgain.style.display = "none"; // Hide it initially
   playAgain.style.marginTop = "10px";
   playAgain.style.marginLeft = "50px";
   playAgain.style.padding = "5px 15px";
+
+  //Event Listeners
+
+  let humanSelection;
 
   btnRock.addEventListener("click", () => {
     humanSelection = getHumanChoice("rock");
@@ -132,7 +144,8 @@ function playGame() {
     humanSelection = "";
     paraHumanChoice.textContent = "";
     paraComputerChoice.textContent = "";
-    scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
+    paraHumanScore.innerText = `Your Score: ${humanScore}`;
+    paraComputerScore.innerText = `Computer Score: ${computerScore}`;
     paraResult.textContent = "";
     play.style.display = "block";
     playAgain.style.display = "none";
