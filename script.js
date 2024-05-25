@@ -60,10 +60,6 @@ function playGame() {
     ) {
       paraResult.textContent = "It's a Tie!";
       scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
-    } else {
-      paraResult.textContent =
-        "You Made an Invalid Choice, This Round Goes to No one!";
-      scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
     }
   }
 
