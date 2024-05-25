@@ -25,60 +25,52 @@ function getHumanChoice(choice) {
 }
 
 function playGame() {
-  const paraResult = document.createElement("p");
-  const scores = document.createElement("p");
+  const paraResult = document.getElementById("para-result");
+  const paraHumanScore = document.getElementById("para-human-score");
+  const paraComputerScore = document.getElementById("para-computer-score");
 
   function playRound(humanChoice, computerChoice) {
     if (humanChoice == "rock" && computerChoice == "scissors") {
       paraResult.textContent = "You Win! Rock beats Scissors";
       humanScore += 1;
-      scores.innerText = `Your Score: ${humanScore}\nComputer Score: ${computerScore}`;
     } else if (humanChoice == "rock" && computerChoice == "paper") {
       paraResult.textContent = "You Lose! Paper beats Rock";
       computerScore += 1;
-      scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
     } else if (humanChoice == "paper" && computerChoice == "rock") {
       paraResult.textContent = "You Win! Paper beats Rock";
       humanScore += 1;
-      scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
     } else if (humanChoice == "paper" && computerChoice == "scissors") {
       paraResult.textContent = "You Lose! Scissors beats Paper";
       computerScore += 1;
-      scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
     } else if (humanChoice == "scissors" && computerChoice == "paper") {
       paraResult.textContent = "You Win! Scissors beats Paper";
       humanScore += 1;
-      scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
     } else if (humanChoice == "scissors" && computerChoice == "rock") {
       paraResult.textContent = "You Lose! Rock beats Scissors";
       computerScore += 1;
-      scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
     } else if (
       (humanChoice == "rock" && computerChoice == "rock") ||
       (humanChoice == "paper" && computerChoice == "paper") ||
       (humanChoice == "scissors" && computerChoice == "scissors")
     ) {
       paraResult.textContent = "It's a Tie!";
-      scores.innerText = `Your Score: ${humanScore}\n Computer Score: ${computerScore}`;
     }
+    paraHumanScore.innerText = `Your Score: ${humanScore}`;
+    paraComputerScore.innerText = `Computer Score: ${computerScore}`;
   }
 
   let humanSelection;
 
-  const btnRock = document.createElement("button");
-  btnRock.textContent = "Rock";
+  const btnRock = document.querySelector("btn-rock");
   btnRock.style.margin = "5px";
 
-  const btnPaper = document.createElement("button");
-  btnPaper.textContent = "Paper";
+  const btnPaper = document.querySelector("btn-paper");
   btnPaper.style.margin = "5px";
 
-  const btnScissors = document.createElement("button");
-  btnScissors.textContent = "Scissors";
+  const btnScissors = document.querySelector("btn-scissors");
   btnScissors.style.margin = "5px";
 
-  const play = document.createElement("button");
-  play.textContent = "Play";
+  const play = document.querySelector("play");
   play.style.display = "block";
   play.style.marginLeft = "50px";
   play.style.marginTop = "10px";
@@ -86,17 +78,14 @@ function playGame() {
 
   const body = document.querySelector("body");
 
-  const div = document.createElement("div");
+  const paraHumanChoice = document.querySelector("para-human-choice");
 
-  const paraHumanChoice = document.createElement("p");
+  const paraComputerChoice = document.querySelector("para-computer-choice");
 
-  const paraComputerChoice = document.createElement("p");
-
-  const paraGameResult = document.createElement("p");
+  const paraGameResult = document.querySelector("para-game-result");
   paraGameResult.style.display = "none";
 
-  const playAgain = document.createElement("button");
-  playAgain.textContent = "Play Again";
+  const playAgain = document.querySelector("play-again");
   playAgain.style.display = "none"; // Hide it initially
   playAgain.style.marginTop = "10px";
   playAgain.style.marginLeft = "50px";
@@ -152,21 +141,6 @@ function playGame() {
     paraComputerChoice.style.display = "block";
     paraResult.style.display = "block";
   });
-
-  div.append(
-    btnRock,
-    btnPaper,
-    btnScissors,
-    play,
-    paraHumanChoice,
-    paraComputerChoice,
-    paraResult,
-    scores,
-    paraGameResult,
-    playAgain
-  );
-
-  body.appendChild(div);
 }
 
 playGame();
