@@ -1,0 +1,108 @@
+body {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #adb5bd;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 400px;
+  background-color: #778da9;
+  padding: 40px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.buttons button {
+  flex-grow: 0;
+}
+
+#play,
+#play-again {
+  padding: 10px 100px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
+}
+
+.choice-result {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#para-result {
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
+}
+
+#para-winner {
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.game-over {
+  display: flex;
+  justify-content: center;
+}
+
+#heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 50px;
+  justify-content: flex-start;
+}
+
+#rock,
+#paper,
+#scissors {
+  width: 100px;
+  height: 100px;
+}
+
+#para-human-choice,
+#para-computer-choice,
+#para-human-score,
+#para-computer-score {
+  font-family: "Press Start 2P", cursive;
+  font-size: 16px;
+}
+
+#zero,
+#one,
+#two,
+#three,
+#four,
+#five {
+  width: 75px;
+  height: 75px;
+  display: none;
+}

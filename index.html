@@ -4,28 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <title>Rock Paper Scissors</title>
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="buttons">
-      <button id="btn-rock">Rock</button>
-      <button id="btn-paper">Paper</button>
-      <button id="btn-scissors">Scissors</button>
+    <p id="heading">ROCK.PAPER.SCISSORS</p>
+    <img id="zero" src="zero.png" alt="0" /><img
+      id="one"
+      src="one.png"
+      alt="1"
+    /><img id="two" src="two.png" alt="2" /><img
+      id="three"
+      src="three.png"
+      alt="3"
+    /><img id="four" src="four.png" alt="4" /><img
+      id="five"
+      src="five.png"
+      alt="5"
+    />
+    <div class="container">
+      <div class="buttons">
+        <button id="btn-rock">
+          <img id="rock" src="rock.jpg" alt="Rock" />
+        </button>
+        <button id="btn-paper">
+          <img id="paper" src="paper.jpg" alt="Paper" />
+        </button>
+        <button id="btn-scissors">
+          <img id="scissors" src="scissors.jpg" alt="Scissors" />
+        </button>
+      </div>
       <button id="play">Play</button>
-    </div>
-    <div class="choice-result">
-      <p id="para-human-choice"></p>
-      <p id="para-computer-choice"></p>
-      <p id="para-result"></p>
-    </div>
-    <div class="scores">
-      <p id="para-human-score"></p>
-      <p>|</p>
-      <p id="para-computer-score"></p>
-    </div>
-    <div class="game-over">
-      <p id="para-game-result"></p>
+      <div class="choice-result">
+        <div class="choice"><p id="para-human-choice"></p></div>
+        <div class="choice"><p id="para-computer-choice"></p></div>
+      </div>
+      <div class="result">
+        <p id="para-result"></p>
+      </div>
+      <div class="scores">
+        <p id="para-human-score"></p>
+        <p id="para-computer-score"></p>
+      </div>
+      <div class="game-over">
+        <p id="para-game-result"></p>
+      </div>
       <button id="play-again">Play Again</button>
     </div>
   </body>

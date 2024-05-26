@@ -24,6 +24,45 @@ function getHumanChoice(choice) {
   }
 }
 
+function appendHumanScoreImage(para, score) {
+  let img;
+  if (score === 0) {
+    img = document.querySelector("#zero").cloneNode(true);
+  } else if (score === 1) {
+    img = document.querySelector("#one").cloneNode(true);
+  } else if (score === 2) {
+    img = document.querySelector("#two").cloneNode(true);
+  } else if (score === 3) {
+    img = document.querySelector("#three").cloneNode(true);
+  } else if (score === 4) {
+    img = document.querySelector("#four").cloneNode(true);
+  } else if (score === 5) {
+    img = document.querySelector("#five").cloneNode(true);
+  }
+  img.style.display = "block"; // Ensure the image is displayed
+  para.appendChild(img);
+}
+
+function appendComputerScoreImage(para, score) {
+  let img;
+  if (score === 0) {
+    img = document.querySelector("#zero").cloneNode(true);
+  } else if (score === 1) {
+    img = document.querySelector("#one").cloneNode(true);
+  } else if (score === 2) {
+    img = document.querySelector("#two").cloneNode(true);
+  } else if (score === 3) {
+    img = document.querySelector("#three").cloneNode(true);
+  } else if (score === 4) {
+    img = document.querySelector("#four").cloneNode(true);
+  } else if (score === 5) {
+    img = document.querySelector("#five").cloneNode(true);
+  }
+  img.style.display = "block";
+  img.style.marginLeft = "25px"; // Ensure the image is displayed
+  para.appendChild(img);
+}
+
 function playGame() {
   //Declaring variable for html elements
   const paraResult = document.querySelector("#para-result");
@@ -38,6 +77,25 @@ function playGame() {
   //const body = document.querySelector("body");
   const paraGameResult = document.querySelector("#para-game-result");
   const playAgain = document.querySelector("#play-again");
+  const imgRock = document.querySelector("#rock");
+  const imgPaper = document.querySelector("#paper");
+  const imgScissors = document.querySelector("#scissors");
+  const imgZero = document.querySelector("#zero");
+  const imgOne = document.querySelector("#one");
+  const imgTwo = document.querySelector("#two");
+  const imgThree = document.querySelector("#three");
+  const imgFour = document.querySelector("#four");
+  const imgFive = document.querySelector("#five");
+
+  //Creating Image Clones
+
+  const cloneRock = imgRock.cloneNode();
+  const clonePaper = imgPaper.cloneNode();
+  const cloneScissors = imgScissors.cloneNode();
+
+  const thirdCloneRock = imgRock.cloneNode();
+  const thirdClonePaper = imgPaper.cloneNode();
+  const thirdCloneScissors = imgScissors.cloneNode();
 
   // Check if all elements are found
   console.log({
@@ -53,25 +111,27 @@ function playGame() {
     playAgain,
     paraGameResult,
   });
-
+  const beats = document.createTextNode("\tBEATS\t");
   function playRound(humanChoice, computerChoice) {
+    paraHumanScore.innerHTML = "HUMAN<br/>SCORE<br/><br/>";
+    paraComputerScore.innerHTML = "COMPUTER<br/>SCORE<br/><br/>";
     if (humanChoice == "rock" && computerChoice == "scissors") {
-      paraResult.textContent = "You Win! Rock beats Scissors";
+      paraResult.innerText = "You Win!\n";
       humanScore += 1;
     } else if (humanChoice == "rock" && computerChoice == "paper") {
-      paraResult.textContent = "You Lose! Paper beats Rock";
+      paraResult.innerText = "You Lose!\n";
       computerScore += 1;
     } else if (humanChoice == "paper" && computerChoice == "rock") {
-      paraResult.textContent = "You Win! Paper beats Rock";
+      paraResult.innerText = "You Win!\n";
       humanScore += 1;
     } else if (humanChoice == "paper" && computerChoice == "scissors") {
-      paraResult.textContent = "You Lose! Scissors beats Paper";
+      paraResult.innerText = "You Lose!\n";
       computerScore += 1;
     } else if (humanChoice == "scissors" && computerChoice == "paper") {
-      paraResult.textContent = "You Win! Scissors beats Paper";
+      paraResult.innerText = "You Win!\n";
       humanScore += 1;
     } else if (humanChoice == "scissors" && computerChoice == "rock") {
-      paraResult.textContent = "You Lose! Rock beats Scissors";
+      paraResult.innerText = "You Lose!\n";
       computerScore += 1;
     } else if (
       (humanChoice == "rock" && computerChoice == "rock") ||
@@ -80,46 +140,48 @@ function playGame() {
     ) {
       paraResult.textContent = "It's a Tie!";
     }
-    paraHumanScore.innerText = `Your Score: ${humanScore}`;
-    paraComputerScore.innerText = `Computer Score: ${computerScore}`;
+
+    appendHumanScoreImage(paraHumanScore, humanScore);
+    appendComputerScoreImage(paraComputerScore, computerScore);
   }
 
-  //Styling elements
+  //Displaying and Hiding elements
 
-  btnRock.style.margin = "5px";
-  btnPaper.style.margin = "5px";
-  btnScissors.style.margin = "5px";
   play.style.display = "block";
-  play.style.marginLeft = "50px";
-  play.style.marginTop = "10px";
-  play.style.padding = "3px 22px";
   paraGameResult.style.display = "none";
   playAgain.style.display = "none"; // Hide it initially
-  playAgain.style.marginTop = "10px";
-  playAgain.style.marginLeft = "50px";
-  playAgain.style.padding = "5px 15px";
 
   //Event Listeners
 
   let humanSelection;
+  let computerSelection;
 
   btnRock.addEventListener("click", () => {
     humanSelection = getHumanChoice("rock");
-    paraHumanChoice.textContent = "Your Choice is rock";
+    paraHumanChoice.innerHTML = "HUMAN<br/><br/>";
+    paraHumanChoice.appendChild(cloneRock);
   });
   btnPaper.addEventListener("click", () => {
     humanSelection = getHumanChoice("paper");
-    paraHumanChoice.textContent = "Your Choice is paper";
+    paraHumanChoice.innerHTML = "HUMAN<br/><br/>";
+    paraHumanChoice.appendChild(clonePaper);
   });
   btnScissors.addEventListener("click", () => {
     humanSelection = getHumanChoice("scissors");
-    paraHumanChoice.textContent = "Your Choice is scissors";
+    paraHumanChoice.innerHTML = "HUMAN<br/><br/>";
+    paraHumanChoice.appendChild(cloneScissors);
   });
   play.addEventListener("click", () => {
-    let computerSelection;
     computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
-    paraComputerChoice.textContent = `Computer's choice is ${computerSelection}`;
+    paraComputerChoice.innerHTML = "COMPUTER<br/><br/>";
+    if (computerSelection === "rock") {
+      paraComputerChoice.appendChild(thirdCloneRock);
+    } else if (computerSelection === "paper") {
+      paraComputerChoice.appendChild(thirdClonePaper);
+    } else if (computerSelection === "scissors") {
+      paraComputerChoice.appendChild(thirdCloneScissors);
+    }
     if (humanScore === 5 || computerScore === 5) {
       paraHumanChoice.style.display = "none";
       paraComputerChoice.style.display = "none";
@@ -144,8 +206,8 @@ function playGame() {
     humanSelection = "";
     paraHumanChoice.textContent = "";
     paraComputerChoice.textContent = "";
-    paraHumanScore.innerText = `Your Score: ${humanScore}`;
-    paraComputerScore.innerText = `Computer Score: ${computerScore}`;
+    paraHumanScore.innerHTML = "";
+    paraComputerScore.innerHTML = "";
     paraResult.textContent = "";
     play.style.display = "block";
     playAgain.style.display = "none";
