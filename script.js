@@ -58,9 +58,22 @@ function appendComputerScoreImage(para, score) {
   } else if (score === 5) {
     img = document.querySelector("#five").cloneNode(true);
   }
-  img.style.display = "block";
-  img.style.marginLeft = "25px"; // Ensure the image is displayed
+  img.style.display = "block"; // Ensure the image is displayed
+  img.style.marginLeft = "25px";
   para.appendChild(img);
+}
+
+function appendGameResultImage(para, humanScore, computerScore) {
+  let outcome;
+  if (humanScore > computerScore) {
+    outcome = document.querySelector("#victory").cloneNode(true);
+  } else if (computerScore > humanScore) {
+    outcome = document.querySelector("#defeat").cloneNode(true);
+  } else {
+    outcome = document.querySelector("#stalemate").cloneNode(true);
+  }
+  outcome.style.display = "block";
+  para.appendChild(outcome);
 }
 
 function playGame() {
@@ -80,12 +93,6 @@ function playGame() {
   const imgRock = document.querySelector("#rock");
   const imgPaper = document.querySelector("#paper");
   const imgScissors = document.querySelector("#scissors");
-  const imgZero = document.querySelector("#zero");
-  const imgOne = document.querySelector("#one");
-  const imgTwo = document.querySelector("#two");
-  const imgThree = document.querySelector("#three");
-  const imgFour = document.querySelector("#four");
-  const imgFive = document.querySelector("#five");
 
   //Creating Image Clones
 
@@ -97,21 +104,6 @@ function playGame() {
   const thirdClonePaper = imgPaper.cloneNode();
   const thirdCloneScissors = imgScissors.cloneNode();
 
-  // Check if all elements are found
-  console.log({
-    paraResult,
-    paraHumanScore,
-    paraComputerScore,
-    btnRock,
-    btnPaper,
-    btnScissors,
-    play,
-    paraHumanChoice,
-    paraComputerChoice,
-    playAgain,
-    paraGameResult,
-  });
-  const beats = document.createTextNode("\tBEATS\t");
   function playRound(humanChoice, computerChoice) {
     paraHumanScore.innerHTML = "HUMAN<br/>SCORE<br/><br/>";
     paraComputerScore.innerHTML = "COMPUTER<br/>SCORE<br/><br/>";
@@ -148,7 +140,6 @@ function playGame() {
   //Displaying and Hiding elements
 
   play.style.display = "block";
-  paraGameResult.style.display = "none";
   playAgain.style.display = "none"; // Hide it initially
 
   //Event Listeners
@@ -186,17 +177,9 @@ function playGame() {
       paraHumanChoice.style.display = "none";
       paraComputerChoice.style.display = "none";
       paraResult.style.display = "none";
-      if (humanScore > computerScore) {
-        paraGameResult.textContent = `You Won ${humanScore} Round(s), You Win!`;
-      } else if (computerScore > humanScore) {
-        paraGameResult.textContent = `You Lost! The Computer Won ${computerScore} Round(s), Computer Wins!`;
-      } else {
-        paraGameResult.textContent = `It's a Tie! You Won ${humanScore} Round(s) and The Computer Won ${computerScore} Round(s)`;
-      }
-
+      appendGameResultImage(paraGameResult, humanScore, computerScore);
       play.style.display = "none";
       playAgain.style.display = "block";
-      paraGameResult.style.display = "block";
     }
   });
 
@@ -211,7 +194,7 @@ function playGame() {
     paraResult.textContent = "";
     play.style.display = "block";
     playAgain.style.display = "none";
-    paraGameResult.style.display = "none";
+    paraGameResult.innerHTML = "";
     paraHumanChoice.style.display = "block";
     paraComputerChoice.style.display = "block";
     paraResult.style.display = "block";
